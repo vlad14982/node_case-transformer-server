@@ -9,7 +9,8 @@ function createServer() {
     const [path, queryString] = req.url.split('?');
     const params = new URLSearchParams(queryString);
     const toCase = params.get('toCase');
-    const textToConvert = path.slice(1);
+    const parts = decodeURIComponent(path).slice(1).split('/');
+    const textToConvert = parts[0];
     const errors = [];
 
     if (!textToConvert) {
